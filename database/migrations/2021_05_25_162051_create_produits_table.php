@@ -18,9 +18,9 @@ class CreateProduitsTable extends Migration
             $table->timestamps();
             $table->text('nom');
             $table->float('prix');
-            $table->integer('quantité disponible');
-            $table->integer('quantité de restockage par défaut');
-            $table->text('catégorie');
+            $table->integer('quantite_disponible');
+            $table->integer('quantite_restockage');
+            $table->text('categorie');
         });
     }
 
