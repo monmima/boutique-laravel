@@ -16,10 +16,21 @@ class ProduitController extends Controller
     {
         //
 
-        $produit = Produit::all();
+        $produits = Produit::all();
 
-        return view("index"), [
-            "produits" => $produits,
+        return view("index", [
+            "produits" => $produits
+        ]);
+        
+    }
+
+    // show the edit form
+    public function edit($id)
+    {
+        $produit = Produit::findOrFail($id);
+
+        return view("/edit", [
+            "produit" => $produit
         ]);
     }
 
@@ -31,17 +42,25 @@ class ProduitController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, array(
+            "nom" => "required|min:5|max:255",
+            "prix" => "required",
+            "quantite_disponible" => "required",
+            "quantite_restockage" => "required",
+            "categorie" => "required"
+        ));
+
         //
 
         $produit = new Produit();
 
-        $produit->name = request("name");
+        $produit->nom = request("nom");
         $produit->prix = request("prix");
-        $produit->quantiteDisponible = request("quantite_disponible");
-        $produit->quantiteRestockage = request("quantite_restockage");
+        $produit->quantite_disponible = request("quantite_disponible");
+        $produit->quantite_restockage = request("quantite_restockage");
         $produit->categorie = request("categorie");
 
-        $pizza->save();
+        $produit->save();
 
         return redirect("/")->with("msg", "Produit ajouté");
     }
@@ -68,12 +87,20 @@ class ProduitController extends Controller
     {
         //
 
-        $produit = Produit::findOrFail($id);
+        $this->validate($request, array(
+            "nom" => "required|min:5|max:255",
+            "prix" => "required",
+            "quantite_disponible" => "required",
+            "quantite_restockage" => "required",
+            "categorie" => "required"
+        ));
 
-        $produit->name = request("name");
+        $produit = Produit::findOrFail($produit->id);
+
+        $produit->nom = request("nom");
         $produit->prix = request("prix");
-        $produit->quantiteDisponible = request("quantite_disponible");
-        $produit->quantiteRestockage = request("quantite_restockage");
+        $produit->quantite_disponible = request("quantite_disponible");
+        $produit->quantite_restockage = request("quantite_restockage");
         $produit->categorie = request("categorie");
 
         return redirect("/")->with("msg", "Mise à jour effectuée");
@@ -85,7 +112,7 @@ class ProduitController extends Controller
      * @param  \App\Models\Produit  $produit
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Produit $produit)
+    public function destroy($id)
     {
         //
         $produit = Produit::findOrFail($id);

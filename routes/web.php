@@ -13,9 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
+
+// app routes
+
+Route::get('/', "App\Http\Controllers\ProduitController@index");
+Route::post('/', "App\Http\Controllers\ProduitController@store");
+Route::get('/{entry}/edit', "App\Http\Controllers\ProduitController@edit");
+Route::put('/{entry}', "App\Http\Controllers\ProduitController@update");
+Route::delete('/{entry}/delete', "App\Http\Controllers\ProduitController@destroy");
+
+// routes that were there at the beginning
 
 Auth::routes();
 
