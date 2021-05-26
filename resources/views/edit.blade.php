@@ -13,7 +13,7 @@
         <!-- because modern browsers/forms can only take two different methods -->
         @method('PUT')
 
-        <p><input type="text" name="nom" id="nom" placeholder="{{ $produit->nom }}" required></p>
+        <p><input type="text" name="nom" id="nom" placeholder="{{ $produit->nom }}" minlength="5" maxlength="255" required></p>
         <p><input type="number" name="prix" id="prix" placeholder="{{ $produit->prix }}" required></p>
         <p><input type="number" name="quantite_disponible" id="quantite_disponible" placeholder="{{ $produit->quantite_disponible }}" required></p>
         <p><input type="number" name="quantite_restockage" id="quantite_restockage" placeholder="{{ $produit->quantite_restockage }}" required></p>

@@ -73,7 +73,12 @@ class ProduitController extends Controller
      */
     public function show(Produit $produit)
     {
-        //
+        // JSON
+        return [
+            "foo" => "bar",
+            "laravel" => "automatically turns arrays into JSON",
+            "Firefox" => "gives a nice layout to arrays, but not Brave"
+        ];
     }
 
     /**
@@ -83,7 +88,7 @@ class ProduitController extends Controller
      * @param  \App\Models\Produit  $produit
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Produit $produit)
+    public function update(Request $request, $id)
     {
         //
 
@@ -95,15 +100,19 @@ class ProduitController extends Controller
             "categorie" => "required"
         ));
 
-        $produit = Produit::findOrFail($produit->id);
+        $produit = Produit::findOrFail($id);
 
         $produit->nom = request("nom");
         $produit->prix = request("prix");
         $produit->quantite_disponible = request("quantite_disponible");
         $produit->quantite_restockage = request("quantite_restockage");
         $produit->categorie = request("categorie");
+        $produit->save();
 
-        return redirect("/")->with("msg", "Mise à jour effectuée");
+        // back to the main page
+        $produits = Produit::all();
+
+        return redirect("/");
     }
 
     /**
@@ -120,4 +129,6 @@ class ProduitController extends Controller
 
         return redirect("/");
     }
+
+
 }

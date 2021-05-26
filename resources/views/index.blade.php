@@ -34,7 +34,7 @@
         <form method="POST" action="/" name="create" id="create">
             @csrf <!-- cross-site request forgery -->
 
-            <p><input type="text" name="nom" id="nom" placeholder="nom" required></p>
+            <p><input type="text" name="nom" id="nom" placeholder="nom" minlength="5" maxlength="255" required></p>
             <p><input type="number" name="prix" id="prix" placeholder="prix" required></p>
             <p><input type="number" name="quantite_disponible" id="quantite_disponible" placeholder="quantité disponible" required></p>
             <p><input type="number" name="quantite_restockage" id="quantite_restockage" placeholder="quantité de restockage" required></p>
