@@ -42,13 +42,13 @@ class ProduitController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, array(
+        $validated = $request->validate([
             "nom" => "required|min:5|max:255",
             "prix" => "required",
             "quantite_disponible" => "required",
             "quantite_restockage" => "required",
             "categorie" => "required"
-        ));
+        ]);
 
         //
 
@@ -92,13 +92,13 @@ class ProduitController extends Controller
     {
         //
 
-        $this->validate($request, array(
+        $validated = $request->validate([
             "nom" => "required|min:5|max:255",
             "prix" => "required",
             "quantite_disponible" => "required",
             "quantite_restockage" => "required",
             "categorie" => "required"
-        ));
+        ]);
 
         $produit = Produit::findOrFail($id);
 
