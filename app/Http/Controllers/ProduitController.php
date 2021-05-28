@@ -43,7 +43,7 @@ class ProduitController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            "nom" => "required|min:5|max:255",
+            "nom" => "required|unique:produits|min:5|max:255",
             "prix" => "required",
             "quantite_disponible" => "required",
             "quantite_restockage" => "required",
@@ -93,7 +93,7 @@ class ProduitController extends Controller
         //
 
         $validated = $request->validate([
-            "nom" => "required|min:5|max:255",
+            "nom" => "required|unique:produits|min:5|max:255",
             "prix" => "required",
             "quantite_disponible" => "required",
             "quantite_restockage" => "required",
