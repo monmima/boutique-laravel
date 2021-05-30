@@ -13,11 +13,11 @@
         <!-- because modern browsers/forms can only take two different methods -->
         @method('PUT')
 
-        <p><input type="text" name="nom" id="nom" value="{{ $produit->nom }}" minlength="5" maxlength="255" required></p>
-        <p><input type="number" name="prix" id="prix" value="{{ $produit->prix }}" required></p>
-        <p><input type="number" name="quantite_disponible" id="quantite_disponible" value="{{ $produit->quantite_disponible }}" required></p>
-        <p><input type="number" name="quantite_restockage" id="quantite_restockage" value="{{ $produit->quantite_restockage }}" required></p>
-        <p><input type="text" name="categorie" id="categorie" value="{{ $produit->categorie }}" required></p>
+        <p><input type="text" name="nom" id="nom" value="{{ $produit->nom }}" minlength="5" maxlength="255" placeholder="nom" required></p>
+        <p><input type="number" name="prix" id="prix" value="{{ $produit->prix }}" placeholder="prix" required></p>
+        <p><input type="number" name="quantite_disponible" id="quantite_disponible" placeholder="quantité disponible" value="{{ $produit->quantite_disponible }}" required></p>
+        <p><input type="number" name="quantite_restockage" id="quantite_restockage" placeholder="quantité de restockage" value="{{ $produit->quantite_restockage }}" required></p>
+        <p><input type="text" name="categorie" id="categorie" value="{{ $produit->categorie }}" placeholder="catégorie" required></p>
 
         <!--BOUTONS-->
         <div class="espaces-boutons">
