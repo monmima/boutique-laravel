@@ -73,11 +73,20 @@ class ProduitController extends Controller
      */
     public function show(Produit $produit)
     {
+        $produit = Produit::find(1);
+        $produit->produit_categorie; // will return all categories for the product id 1
+
+        // // JSON
+        // return [
+        //     "foo" => "bar",
+        //     "laravel" => "automatically turns arrays into JSON",
+        //     "Firefox" => "gives a nice layout to arrays, but not Brave"
+        // ];
+
         // JSON
         return [
-            "foo" => "bar",
-            "laravel" => "automatically turns arrays into JSON",
-            "Firefox" => "gives a nice layout to arrays, but not Brave"
+            "produit" => $produit,
+            "produit_categories" => $produit->produit_categories
         ];
     }
 
