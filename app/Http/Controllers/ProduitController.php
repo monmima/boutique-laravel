@@ -86,7 +86,7 @@ class ProduitController extends Controller
         // JSON
         return [
             "produit" => $produit,
-            "produit_categories" => $produit->produit_categories
+            "categories" => $produit->categories
         ];
     }
 

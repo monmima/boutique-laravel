@@ -14,5 +14,37 @@ ___
 
 The categories won't display correctly at the moment. Currently working on this. See http://127.0.0.1:8000/1 to see what happens.
 
+___
 
+If you're product and categories won't work together, please think about doing the following:
+
+1. Your ProduitController.php file should look like this:
+
+        "categories" => $produit->categories
+
+2. Your Produit.php model should look like this:
+
+        class Produit extends Model
+        {
+            use HasFactory;
+
+            public function categories()
+            {
+                return $this->belongsToMany(ProduitCategorie::class);
+            }
+        }
+
+3. Your ProduitController.php model should look like this:
+
+        class ProduitCategorie extends Model
+        {
+            use HasFactory;
+
+            public function produits()
+            {
+                return $this->belongsToMany(Produit::class);
+            }
+        }
+
+4. Your category table could be name "produit_categories" and things should work just fine.
     
