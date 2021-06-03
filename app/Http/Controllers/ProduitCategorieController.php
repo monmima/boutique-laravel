@@ -14,7 +14,21 @@ class ProduitCategorieController extends Controller
      */
     public function index()
     {
-        //
+        // getting data from the pivot table is done from the Produit.php model
+
+        $categories = ProduitCategorie::all();
+
+        return [
+            "ProduitCategorie" => $categories,
+        ];
+
+        // // JSON
+        // return [
+        //     "foo" => "bar",
+        //     "laravel" => "automatically turns arrays into JSON",
+        //     "Firefox" => "gives a nice layout to arrays, but not Brave"
+        // ];
+        
     }
 
     /**

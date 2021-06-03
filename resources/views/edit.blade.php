@@ -17,7 +17,12 @@
         <p><input type="number" name="prix" id="prix" value="{{ $produit->prix }}" placeholder="prix" required></p>
         <p><input type="number" name="quantite_disponible" id="quantite_disponible" placeholder="quantité disponible" value="{{ $produit->quantite_disponible }}" required></p>
         <p><input type="number" name="quantite_restockage" id="quantite_restockage" placeholder="quantité de restockage" value="{{ $produit->quantite_restockage }}" required></p>
-        <p><input type="text" name="categorie" id="categorie" value="{{ $produit->categorie }}" placeholder="catégorie" required></p>
+        {{-- <p><input type="text" name="categorie" id="categorie" value="{{ $produit->categorie }}" placeholder="catégorie" required></p> --}}
+
+        @foreach($categories as $categorie)
+            <input type="checkbox" id="categorie-name" name="categorie-name" value="{{ $categorie->name }}">
+            <label for="{{ $categorie->name }}">{{ $categorie->name }}</label><br> 
+        @endforeach</a>
 
         <!--BOUTONS-->
         <div class="espaces-boutons">

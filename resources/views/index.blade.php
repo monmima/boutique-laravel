@@ -7,7 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>This is the index page.</h1>
+    <header>
+        <h1>This is the index page.</h1>
+        <a href="/categories" title="Catégories de produits">Voir les catégories</a>
+    </header>
+
 
     <hr>
 
@@ -44,6 +48,10 @@
             <p><input type="number" name="quantite_disponible" id="quantite_disponible" placeholder="quantité disponible" required></p>
             <p><input type="number" name="quantite_restockage" id="quantite_restockage" placeholder="quantité de restockage" required></p>
 
+            @foreach($categories as $categorie)
+                <input type="checkbox" id="categorie-name" name="categorie-name" value="{{ $categorie->name }}">
+                <label for="{{ $categorie->name }}">{{ $categorie->name }}</label><br> 
+            @endforeach</a>
 
             {{-- <p><input type="text" name="categorie" id="categorie" placeholder="categorie" required></p> --}}
 

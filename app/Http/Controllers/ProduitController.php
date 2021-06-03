@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produit;
+use App\Models\ProduitCategorie;
 use Illuminate\Http\Request;
 
 class ProduitController extends Controller
@@ -17,9 +18,11 @@ class ProduitController extends Controller
         // getting data from the pivot table is done from the Produit.php model
 
         $produits = Produit::all();
+        $categories = ProduitCategorie::all();
 
         return view("index", [
             "produits" => $produits,
+            "categories" => $categories
         ]);
         
     }
@@ -28,9 +31,13 @@ class ProduitController extends Controller
     public function edit($id)
     {
         $produit = Produit::findOrFail($id);
+        $categories = ProduitCategorie::all();
+
+        // icigo
 
         return view("/edit", [
-            "produit" => $produit
+            "produit" => $produit,
+            "categories" => $categories
         ]);
     }
 
@@ -42,12 +49,13 @@ class ProduitController extends Controller
      */
     public function store(Request $request)
     {
+        
         $validated = $request->validate([
             "nom" => "required|unique:produits|min:5|max:255",
             "prix" => "required",
             "quantite_disponible" => "required",
             "quantite_restockage" => "required",
-            "categorie" => "required"
+            // "categorie" => "required"
         ]);
 
         //
@@ -58,7 +66,7 @@ class ProduitController extends Controller
         $produit->prix = request("prix");
         $produit->quantite_disponible = request("quantite_disponible");
         $produit->quantite_restockage = request("quantite_restockage");
-        $produit->categorie = request("categorie");
+        // $produit->categorie = request("categorie");
 
         $produit->save();
 
@@ -71,9 +79,9 @@ class ProduitController extends Controller
      * @param  \App\Models\Produit  $produit
      * @return \Illuminate\Http\Response
      */
-    public function show(Produit $produit)
+    public function show(Produit $id)
     {
-        $produit = Produit::find(1);
+        $id = Produit::find(1);
 
         // // JSON
         // return [
@@ -84,7 +92,7 @@ class ProduitController extends Controller
 
         // JSON
         return [
-            "produit" => $produit
+            "produit" => $id
         ];
     }
 
@@ -104,7 +112,7 @@ class ProduitController extends Controller
             "prix" => "required",
             "quantite_disponible" => "required",
             "quantite_restockage" => "required",
-            "categorie" => "required"
+            // "categorie" => "required"
         ]);
 
         $produit = Produit::findOrFail($id);
@@ -113,7 +121,7 @@ class ProduitController extends Controller
         $produit->prix = request("prix");
         $produit->quantite_disponible = request("quantite_disponible");
         $produit->quantite_restockage = request("quantite_restockage");
-        $produit->categorie = request("categorie");
+        // $produit->categorie = request("categorie");
         $produit->save();
 
         // back to the main page

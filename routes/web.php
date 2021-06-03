@@ -17,14 +17,18 @@ use Illuminate\Support\Facades\Route;
 //     return view('index');
 // });
 
-// app routes
+// produitCategories routes
+
+Route::get('/categories', "App\Http\Controllers\ProduitCategorieController@index");
+
+// produit routes
 
 Route::get('/', "App\Http\Controllers\ProduitController@index");
 Route::post('/', "App\Http\Controllers\ProduitController@store");
-Route::get('/{entry}/edit', "App\Http\Controllers\ProduitController@edit");
-Route::get('/{entry}', "App\Http\Controllers\ProduitController@show");
-Route::put('/{entry}', "App\Http\Controllers\ProduitController@update");
-Route::delete('/{entry}/delete', "App\Http\Controllers\ProduitController@destroy");
+Route::get('/{id}/edit', "App\Http\Controllers\ProduitController@edit");
+Route::get('/{id}', "App\Http\Controllers\ProduitController@show");
+Route::put('/{id}', "App\Http\Controllers\ProduitController@update");
+Route::delete('/{id}/delete', "App\Http\Controllers\ProduitController@destroy");
 
 // routes that were there at the beginning
 
