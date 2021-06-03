@@ -14,12 +14,12 @@ class ProduitController extends Controller
      */
     public function index()
     {
-        //
+        // getting data from the pivot table is done from the Produit.php model
 
         $produits = Produit::all();
 
         return view("index", [
-            "produits" => $produits
+            "produits" => $produits,
         ]);
         
     }
@@ -74,7 +74,6 @@ class ProduitController extends Controller
     public function show(Produit $produit)
     {
         $produit = Produit::find(1);
-        $produit->produit_categorie; // will return all categories for the product id 1
 
         // // JSON
         // return [
@@ -85,8 +84,7 @@ class ProduitController extends Controller
 
         // JSON
         return [
-            "produit" => $produit,
-            "categories" => $produit->categories
+            "produit" => $produit
         ];
     }
 

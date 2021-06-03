@@ -17,7 +17,12 @@
             @foreach($produits as $item)
 
                 <ul>
-                    <a href="{{ $item->id }}/edit">{{ $item->id }} | {{ $item->nom }} | {{ $item->prix }}</a>
+                    <a href="{{ $item->id }}/edit">{{ $item->id }} <br> {{ $item->nom }} <br> {{ $item->prix }} <br> 
+                    
+                    Catégorie(s): 
+                    @foreach($item->categories as $categorie)
+                        - {{ $categorie["name"] }}
+                    @endforeach</a>
                     
                     <form action="/{{ $item->id }}/delete" method="post">
                         <input class="btn btn-default" type="submit" value="Delete {{ $item->nom }}" />
@@ -38,8 +43,9 @@
             <p><input type="number" name="prix" id="prix" placeholder="prix" required></p>
             <p><input type="number" name="quantite_disponible" id="quantite_disponible" placeholder="quantité disponible" required></p>
             <p><input type="number" name="quantite_restockage" id="quantite_restockage" placeholder="quantité de restockage" required></p>
-            <p><input type="text" name="categorie" id="categorie" placeholder="categorie" required></p>
 
+
+            {{-- <p><input type="text" name="categorie" id="categorie" placeholder="categorie" required></p> --}}
 
             <!--BOUTONS-->
             <div class="espaces-boutons">

@@ -9,6 +9,9 @@ class Produit extends Model
 {
     use HasFactory;
 
+    // to associate pivot table to the the results
+    protected $with = ['categories'];
+
     public function categories()
     {
         return $this->belongsToMany(ProduitCategorie::class);
