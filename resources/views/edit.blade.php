@@ -17,12 +17,36 @@
         <p><input type="number" name="prix" id="prix" value="{{ $produit->prix }}" placeholder="prix" required></p>
         <p><input type="number" name="quantite_disponible" id="quantite_disponible" placeholder="quantité disponible" value="{{ $produit->quantite_disponible }}" required></p>
         <p><input type="number" name="quantite_restockage" id="quantite_restockage" placeholder="quantité de restockage" value="{{ $produit->quantite_restockage }}" required></p>
+
         {{-- <p><input type="text" name="categorie" id="categorie" value="{{ $produit->categorie }}" placeholder="catégorie" required></p> --}}
 
+        <!-- create array of ticked boxes -->
+        <?php $tickedArray = array() ?>
+
+        @foreach($produit->categories as $tickedBox)
+
+            <?php
+                array_push($tickedArray, $tickedBox->name);
+            ?>
+
+        @endforeach
+
+        <hr>
+
         @foreach($categories as $categorie)
-            <input type="checkbox" id="categorie-name" name="categorie-name" value="{{ $categorie->name }}">
-            <label for="{{ $categorie->name }}">{{ $categorie->name }}</label><br> 
-        @endforeach</a>
+
+            @if (in_array($categorie->name, $tickedArray))
+                <input type="checkbox" id="categorie-name" name="categorie-name" value="{{ $categorie->name }}" checked>
+                <label for="{{ $categorie->name }}">{{ $categorie->name }}</label><br>
+            @else
+                <input type="checkbox" id="categorie-name" name="categorie-name" value="{{ $categorie->name }}">
+                <label for="{{ $categorie->name }}">{{ $categorie->name }}</label><br>
+            @endif
+
+        @endforeach
+
+
+        <hr>
 
         <!--BOUTONS-->
         <div class="espaces-boutons">
