@@ -10,7 +10,7 @@
     <header>
         <h1>This is the index page.</h1>
 
-        <p><a href="/categories" title="Catégories de produits">Voir les catégories</a> - <a href="https://github.com/monmima/boutique-laravel">Lien vers Github</a></p>
+        <p><a href="/categories" title="Catégories de produits">Voir les catégories</a> - <a href="https://github.com/monmima/boutique-laravel">Dépôt sur Github</a></p>
 
     </header>
 
