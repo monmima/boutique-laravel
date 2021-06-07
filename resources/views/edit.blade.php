@@ -23,6 +23,7 @@
         <!-- create array of ticked boxes -->
         <?php $tickedArray = array() ?>
 
+        <!-- push data to the array -->
         @foreach($produit->categories as $tickedBox)
 
             <?php
@@ -33,6 +34,7 @@
 
         <hr>
 
+        <!-- compare and print the data -->
         @foreach($categories as $categorie)
 
             @if (in_array($categorie->name, $tickedArray))
@@ -44,7 +46,6 @@
             @endif
 
         @endforeach
-
 
         <hr>
 

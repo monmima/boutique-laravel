@@ -9,9 +9,10 @@
 <body>
     <header>
         <h1>This is the index page.</h1>
-        <a href="/categories" title="Catégories de produits">Voir les catégories</a>
-    </header>
 
+        <p><a href="/categories" title="Catégories de produits">Voir les catégories</a> - <a href="https://github.com/monmima/boutique-laravel">Lien vers Github</a></p>
+
+    </header>
 
     <hr>
 
