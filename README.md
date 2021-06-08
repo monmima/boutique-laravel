@@ -1,5 +1,8 @@
 # boutique-laravel
+
 Boutique en Laravel
+
+This app was deployed on [Heroku](https://boutique-laravel.herokuapp.com/). For now, the deployed version has a bug.
 
 # Creating A Many-To-Many Relationship (Pivot Table)
 
