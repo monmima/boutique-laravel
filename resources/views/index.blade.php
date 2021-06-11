@@ -54,7 +54,7 @@
                 <label for="{{ $categorie->name }}">{{ $categorie->name }}</label><br> 
             @endforeach</a>
 
-            {{-- <p><input type="text" name="categorie" id="categorie" placeholder="categorie" required></p> --}}
+
 
             <!--BOUTONS-->
             <div class="espaces-boutons">
