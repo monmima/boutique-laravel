@@ -83,6 +83,20 @@ class ProduitController extends Controller
         // $article->tags()->attach($tag_ids);
         // return redirect()->route('articles.index');
 
+        /////////////////
+
+        // $article = Article::create($request->only(['title']));
+        // $categories = explode(",", $request->get("1"));
+        // $tag_ids = [];
+        // foreach ($tags as $tag) {
+        //     $tag_db = Tag::where('name', trim($tag))->firstOrCreate(['name' => trim($tag)]);
+        //     $tag_ids[] = $tag_db->id;
+        // }
+        // $article->tags()->attach($tag_ids);
+        // return redirect()->route('articles.index');
+
+
+
         return redirect("/")->with("msg", "Produit ajouté");
     }
 
@@ -95,13 +109,6 @@ class ProduitController extends Controller
     public function show(Produit $id)
     {
         $id = Produit::find(1);
-
-        // // JSON
-        // return [
-        //     "foo" => "bar",
-        //     "laravel" => "automatically turns arrays into JSON",
-        //     "Firefox" => "gives a nice layout to arrays, but not Brave"
-        // ];
 
         // JSON
         return [
@@ -138,6 +145,45 @@ class ProduitController extends Controller
         $produit->quantite_restockage = request("quantite_restockage");
         // $produit->categorie = request("categorie");
         $produit->save();
+
+        // icigo
+        // --processing categories-- //
+
+            // 1. create array of ticked boxes //
+            $tickedArray = array();
+            $input = $request->all();
+            error_log(print_r($input, true));
+            // error_log($input->nom);
+
+            foreach ($produit->categories as $tickedBox) {
+                array_push($tickedArray, $tickedBox->name);
+                // error_log($tickedBox->name);
+            }
+
+            // 2. remove all categories attached to a product to avoid duplicates
+            // $produit->categories()->detach($categories);
+
+            // 3. to attach all relevant categories to a product
+            // $produit->categories()->attach($categories);
+            foreach ($produit->categories as $tickedBox) {
+                array_push($tickedArray, $tickedBox->name);
+                error_log($tickedBox->name);
+            }
+
+            // <!-- compare and print the data -->
+            // @foreach($categories as $categorie)
+
+            //     @if (in_array($categorie->name, $tickedArray))
+            //         <input type="checkbox" id="{{ $categorie->id }}" name="{{ $categorie->id }}" value="{{ $categorie->name }}" checked>
+            //         <label for="{{ $categorie->id }}">{{ $categorie->name }}</label><br>
+            //     @else
+            //         <input type="checkbox" id="{{ $categorie->id }}" name="{{ $categorie->id }}" value="{{ $categorie->name }}">
+            //         <label for="{{ $categorie->id }}">{{ $categorie->name }}</label><br>
+            //     @endif
+
+            // @endforeach
+
+        // --end processing categories-- //
 
         // back to the main page
         $produits = Produit::all();
