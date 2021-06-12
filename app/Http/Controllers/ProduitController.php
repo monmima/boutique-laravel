@@ -70,6 +70,19 @@ class ProduitController extends Controller
 
         $produit->save();
 
+        // icigo
+        // https://github.com/LaravelDaily/Laravel-many-to-many-demo/blob/master/app/Http/Controllers/ArticlesController.php
+
+        // $article = Article::create($request->only(['title']));
+        // $tags = explode(",", $request->get('tags'));
+        // $tag_ids = [];
+        // foreach ($tags as $tag) {
+        //     $tag_db = Tag::where('name', trim($tag))->firstOrCreate(['name' => trim($tag)]);
+        //     $tag_ids[] = $tag_db->id;
+        // }
+        // $article->tags()->attach($tag_ids);
+        // return redirect()->route('articles.index');
+
         return redirect("/")->with("msg", "Produit ajouté");
     }
 
@@ -116,7 +129,9 @@ class ProduitController extends Controller
         ]);
 
         $produit = Produit::findOrFail($id);
+        $categories = ProduitCategorie::all();
 
+        // updating produit table
         $produit->nom = request("nom");
         $produit->prix = request("prix");
         $produit->quantite_disponible = request("quantite_disponible");
