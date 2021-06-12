@@ -38,11 +38,11 @@
         @foreach($categories as $categorie)
 
             @if (in_array($categorie->name, $tickedArray))
-                <input type="checkbox" id="categorie-name" name="categorie-name" value="{{ $categorie->name }}" checked>
-                <label for="{{ $categorie->name }}">{{ $categorie->name }}</label><br>
+                <input type="checkbox" id="{{ $categorie->id }}" name="{{ $categorie->id }}" value="{{ $categorie->name }}" checked>
+                <label for="{{ $categorie->id }}">{{ $categorie->name }}</label><br>
             @else
-                <input type="checkbox" id="categorie-name" name="categorie-name" value="{{ $categorie->name }}">
-                <label for="{{ $categorie->name }}">{{ $categorie->name }}</label><br>
+                <input type="checkbox" id="{{ $categorie->id }}" name="{{ $categorie->id }}" value="{{ $categorie->name }}">
+                <label for="{{ $categorie->id }}">{{ $categorie->name }}</label><br>
             @endif
 
         @endforeach

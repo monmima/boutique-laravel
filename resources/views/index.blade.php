@@ -50,11 +50,9 @@
             <p><input type="number" name="quantite_restockage" id="quantite_restockage" placeholder="quantité de restockage" required></p>
 
             @foreach($categories as $categorie)
-                <input type="checkbox" id="categorie-name" name="categorie-name" value="{{ $categorie->name }}">
-                <label for="{{ $categorie->name }}">{{ $categorie->name }}</label><br> 
-            @endforeach</a>
-
-
+                <input type="checkbox" id="{{ $categorie->id }}" name="{{ $categorie->id }}" value="{{ $categorie->name }}">
+                <label for="{{ $categorie->id }}">{{ $categorie->name }}</label><br> 
+            @endforeach
 
             <!--BOUTONS-->
             <div class="espaces-boutons">
