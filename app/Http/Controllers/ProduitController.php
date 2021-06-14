@@ -51,7 +51,7 @@ class ProduitController extends Controller
     {
         
         $validated = $request->validate([
-            "nom" => "required|unique:produits|min:5|max:255",
+            "nom" => "required|min:5|max:255",
             "prix" => "required",
             "quantite_disponible" => "required",
             "quantite_restockage" => "required",
@@ -86,10 +86,10 @@ class ProduitController extends Controller
             unset($input["quantite_disponible"]);
             unset($input["quantite_restockage"]);
 
-            // 3. wiping the slate clean for the categories
-            $produit->categories()->detach($categories);
+            // 3. wiping the slate clean for the categories - this step is useless here since the entry is being created
+            // $produit->categories()->detach($categories);
 
-            // 4. attaching new categories that are ticked
+            // 4. attaching categories that are ticked
             // the purpose of array_keys is to return the names of the keys, not their values
             $produit->categories()->attach(array_keys($input));
 
@@ -132,7 +132,7 @@ class ProduitController extends Controller
         //
 
         $validated = $request->validate([
-            "nom" => "required|unique:produits|min:5|max:255",
+            "nom" => "required|min:5|max:255",
             "prix" => "required",
             "quantite_disponible" => "required",
             "quantite_restockage" => "required",
@@ -166,7 +166,7 @@ class ProduitController extends Controller
             // 3. wiping the slate clean for the categories
             $produit->categories()->detach($categories);
 
-            // 4. attaching new categories that are ticked
+            // 4. attaching categories that are ticked
             // the purpose of array_keys is to return the names of the keys, not their values
             $produit->categories()->attach(array_keys($input));
 
