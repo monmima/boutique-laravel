@@ -149,39 +149,27 @@ class ProduitController extends Controller
         // icigo
         // --processing categories-- //
 
-            // 1. create array of ticked boxes //
-            $tickedArray = array();
+            // 1. creating an array of ticked boxes
             $input = $request->all();
+
+            // 2. removing useless stuff from the array before working with it any further
+            unset($input["_token"]);
+            unset($input["_method"]);
+            unset($input["nom"]);
+            unset($input["prix"]);
+            unset($input["quantite_disponible"]);
+            unset($input["quantite_restockage"]);
+
+            // 3. wiping the slate clean for the categories
+            $produit->categories()->detach($categories);
+
+            // 4. attaching new categories that are ticked
+            // the purpose of array_keys is to return the names of the keys, not their values
+            $produit->categories()->attach(array_keys($input));
+
+            // 5. returning the keys and their values to the console
+            error_log(print_r(array_keys($input), true));
             error_log(print_r($input, true));
-            // error_log($input->nom);
-
-            foreach ($produit->categories as $tickedBox) {
-                array_push($tickedArray, $tickedBox->name);
-                // error_log($tickedBox->name);
-            }
-
-            // 2. remove all categories attached to a product to avoid duplicates
-            // $produit->categories()->detach($categories);
-
-            // 3. to attach all relevant categories to a product
-            // $produit->categories()->attach($categories);
-            foreach ($produit->categories as $tickedBox) {
-                array_push($tickedArray, $tickedBox->name);
-                error_log($tickedBox->name);
-            }
-
-            // <!-- compare and print the data -->
-            // @foreach($categories as $categorie)
-
-            //     @if (in_array($categorie->name, $tickedArray))
-            //         <input type="checkbox" id="{{ $categorie->id }}" name="{{ $categorie->id }}" value="{{ $categorie->name }}" checked>
-            //         <label for="{{ $categorie->id }}">{{ $categorie->name }}</label><br>
-            //     @else
-            //         <input type="checkbox" id="{{ $categorie->id }}" name="{{ $categorie->id }}" value="{{ $categorie->name }}">
-            //         <label for="{{ $categorie->id }}">{{ $categorie->name }}</label><br>
-            //     @endif
-
-            // @endforeach
 
         // --end processing categories-- //
 
