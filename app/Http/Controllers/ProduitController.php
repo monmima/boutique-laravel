@@ -61,6 +61,7 @@ class ProduitController extends Controller
         //
 
         $produit = new Produit();
+        $categories = ProduitCategorie::all();
 
         $produit->nom = request("nom");
         $produit->prix = request("prix");
@@ -71,29 +72,32 @@ class ProduitController extends Controller
         $produit->save();
 
         // icigo
-        // https://github.com/LaravelDaily/Laravel-many-to-many-demo/blob/master/app/Http/Controllers/ArticlesController.php
 
-        // $article = Article::create($request->only(['title']));
-        // $tags = explode(",", $request->get('tags'));
-        // $tag_ids = [];
-        // foreach ($tags as $tag) {
-        //     $tag_db = Tag::where('name', trim($tag))->firstOrCreate(['name' => trim($tag)]);
-        //     $tag_ids[] = $tag_db->id;
-        // }
-        // $article->tags()->attach($tag_ids);
-        // return redirect()->route('articles.index');
+        // --processing categories-- //
 
-        /////////////////
+            // 1. creating an array of ticked boxes
+            $input = $request->all();
 
-        // $article = Article::create($request->only(['title']));
-        // $categories = explode(",", $request->get("1"));
-        // $tag_ids = [];
-        // foreach ($tags as $tag) {
-        //     $tag_db = Tag::where('name', trim($tag))->firstOrCreate(['name' => trim($tag)]);
-        //     $tag_ids[] = $tag_db->id;
-        // }
-        // $article->tags()->attach($tag_ids);
-        // return redirect()->route('articles.index');
+            // 2. removing useless stuff from the array before working with it any further
+            unset($input["_token"]);
+            unset($input["_method"]);
+            unset($input["nom"]);
+            unset($input["prix"]);
+            unset($input["quantite_disponible"]);
+            unset($input["quantite_restockage"]);
+
+            // 3. wiping the slate clean for the categories
+            $produit->categories()->detach($categories);
+
+            // 4. attaching new categories that are ticked
+            // the purpose of array_keys is to return the names of the keys, not their values
+            $produit->categories()->attach(array_keys($input));
+
+            // 5. returning the keys and their values to the console
+            error_log(print_r(array_keys($input), true));
+            error_log(print_r($input, true));
+
+        // --end processing categories-- //
 
 
 
@@ -146,7 +150,6 @@ class ProduitController extends Controller
         // $produit->categorie = request("categorie");
         $produit->save();
 
-        // icigo
         // --processing categories-- //
 
             // 1. creating an array of ticked boxes
