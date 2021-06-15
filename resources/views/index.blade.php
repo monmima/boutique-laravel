@@ -47,21 +47,31 @@
         <form method="POST" action="/" name="create" id="create">
             @csrf <!-- cross-site request forgery -->
 
-            <p><input type="text" name="nom" id="nom" placeholder="nom" minlength="5" maxlength="255" required></p>
+            <!-- value="{{ old('nom') }}" ===> https://laravel.com/docs/8.x/requests#old-input -->
 
-            <span class="error">@error("nom"){{$message}}@enderror</span>
+            <p><input type="text" name="nom" id="nom" placeholder="nom" minlength="5" maxlength="255" value="{{ old('nom') }}" required></p>
 
-            <p><input type="number" name="prix" id="prix" placeholder="prix" required></p>
+            @error("nom")
+                <p class="error"><small>@error("nom"){{$message}}@enderror</small></p>
+            @enderror
 
-            <span class="error">@error("prix"){{$message}}@enderror</span>
+            <p><input type="number" name="prix" id="prix" placeholder="prix" value="{{ old('prix') }}" required></p>
 
-            <p><input type="number" name="quantite_disponible" id="quantite_disponible" placeholder="quantité disponible" required></p>
+            @error("prix")
+                <p class="error"><small>@error("prix"){{$message}}@enderror</small></p>
+            @enderror
 
-            <span class="error">@error("quantite_disponible"){{$message}}@enderror</span>
+            <p><input type="number" name="quantite_disponible" id="quantite_disponible" placeholder="quantité disponible" value="{{ old('quantite_disponible') }}" required></p>
 
-            <p><input type="number" name="quantite_restockage" id="quantite_restockage" placeholder="quantité de restockage" required></p>
+            @error("quantite_disponible")
+                <p class="error"><small>@error("quantite_disponible"){{$message}}@enderror</small></p>
+            @enderror
 
-            <span class="error">@error("quantite_restockage"){{$message}}@enderror</span>
+            <p><input type="number" name="quantite_restockage" id="quantite_restockage" placeholder="quantité de restockage" value="{{ old('quantite_restockage') }}" required></p>
+
+            @error("quantite_restockage")
+                <p class="error"><small>@error("quantite_restockage"){{$message}}@enderror</small></p>
+            @enderror
 
             @foreach($categories as $categorie)
                 <input type="checkbox" id="{{ $categorie->id }}" name="{{ $categorie->id }}" value="{{ $categorie->name }}">

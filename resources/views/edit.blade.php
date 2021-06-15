@@ -18,19 +18,27 @@
 
         <p><input type="text" name="nom" id="nom" value="{{ $produit->nom }}" minlength="5" maxlength="255" placeholder="nom" required></p>
 
-        <span class="error">@error("nom"){{$message}}@enderror</span>
+        @error("nom")
+            <p class="error"><small>@error("nom"){{$message}}@enderror</small></p>
+        @enderror
 
         <p><input type="number" name="prix" id="prix" value="{{ $produit->prix }}" placeholder="prix" required></p>
 
-        <span class="error">@error("prix"){{$message}}@enderror</span>
+        @error("prix")
+            <p class="error"><small>@error("prix"){{$message}}@enderror</small></p>
+        @enderror
 
         <p><input type="number" name="quantite_disponible" id="quantite_disponible" placeholder="quantité disponible" value="{{ $produit->quantite_disponible }}" required></p>
 
-        <span class="error">@error("quantite_disponible"){{$message}}@enderror</span>
+        @error("quantite_disponible")
+            <p class="error"><small>@error("quantite_disponible"){{$message}}@enderror</small></p>
+        @enderror
 
         <p><input type="number" name="quantite_restockage" id="quantite_restockage" placeholder="quantité de restockage" value="{{ $produit->quantite_restockage }}" required></p>
 
-        <span class="error">@error("quantite_disponible"){{$message}}@enderror</span>
+        @error("quantite_restockage")
+            <p class="error"><small>@error("quantite_restockage"){{$message}}@enderror</small></p>
+        @enderror
 
         <!-- create array of ticked boxes -->
         <?php $tickedArray = array() ?>
