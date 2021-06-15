@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+
 </head>
 <body>
     <form method="POST" action="/{{ $produit->id }}" name="edit" id="edit">
@@ -14,22 +17,29 @@
         @method('PUT')
 
         <p><input type="text" name="nom" id="nom" value="{{ $produit->nom }}" minlength="5" maxlength="255" placeholder="nom" required></p>
+
+        <span class="error">@error("nom"){{$message}}@enderror</span>
+
         <p><input type="number" name="prix" id="prix" value="{{ $produit->prix }}" placeholder="prix" required></p>
+
+        <span class="error">@error("prix"){{$message}}@enderror</span>
+
         <p><input type="number" name="quantite_disponible" id="quantite_disponible" placeholder="quantité disponible" value="{{ $produit->quantite_disponible }}" required></p>
+
+        <span class="error">@error("quantite_disponible"){{$message}}@enderror</span>
+
         <p><input type="number" name="quantite_restockage" id="quantite_restockage" placeholder="quantité de restockage" value="{{ $produit->quantite_restockage }}" required></p>
 
-        {{-- <p><input type="text" name="categorie" id="categorie" value="{{ $produit->categorie }}" placeholder="catégorie" required></p> --}}
+        <span class="error">@error("quantite_disponible"){{$message}}@enderror</span>
 
         <!-- create array of ticked boxes -->
         <?php $tickedArray = array() ?>
 
         <!-- push data to the array -->
         @foreach($produit->categories as $tickedBox)
-
             <?php
                 array_push($tickedArray, $tickedBox->name);
             ?>
-
         @endforeach
 
         <hr>
@@ -55,18 +65,6 @@
             <button type="submit" value="Submit" class="bouton-bleu">Submit</button>
         </div>
     </form>
-
-
-    <!-- error message if validation doesn't pass -->
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
 
 </body>
 </html>

@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    
 </head>
 <body>
     <header>
@@ -45,9 +48,20 @@
             @csrf <!-- cross-site request forgery -->
 
             <p><input type="text" name="nom" id="nom" placeholder="nom" minlength="5" maxlength="255" required></p>
+
+            <span class="error">@error("nom"){{$message}}@enderror</span>
+
             <p><input type="number" name="prix" id="prix" placeholder="prix" required></p>
+
+            <span class="error">@error("prix"){{$message}}@enderror</span>
+
             <p><input type="number" name="quantite_disponible" id="quantite_disponible" placeholder="quantité disponible" required></p>
+
+            <span class="error">@error("quantite_disponible"){{$message}}@enderror</span>
+
             <p><input type="number" name="quantite_restockage" id="quantite_restockage" placeholder="quantité de restockage" required></p>
+
+            <span class="error">@error("quantite_restockage"){{$message}}@enderror</span>
 
             @foreach($categories as $categorie)
                 <input type="checkbox" id="{{ $categorie->id }}" name="{{ $categorie->id }}" value="{{ $categorie->name }}">
@@ -60,17 +74,6 @@
                 <button type="submit" value="Submit" class="bouton-bleu">Submit</button>
             </div>
         </form>
-
-        <!-- error message if validation doesn't pass -->
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
 
     </main>
 </body>
