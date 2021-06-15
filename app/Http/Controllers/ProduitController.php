@@ -51,7 +51,7 @@ class ProduitController extends Controller
     {
         
         $validated = $request->validate([
-            "nom" => "required|min:5|max:255",
+            "nom" => "required|min:5|max:255|unique:produits",
             "prix" => "required",
             "quantite_disponible" => "required",
             "quantite_restockage" => "required",
