@@ -56,7 +56,7 @@ Thanks to Ceed Media for his [YouTube tutorial](https://www.youtube.com/watch?v=
 
 9. Under "esac", type:
 
-        export PATH="$PATH:$HOME/.config/composer/vendor/bin
+        export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 
 10. Use CTRL + X to save
 11. Press Enter to confirm the name of the file
