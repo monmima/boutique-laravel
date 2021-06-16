@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Produit;
 use App\Models\ProduitCategorie;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ProduitController extends Controller
 {
@@ -137,16 +138,19 @@ class ProduitController extends Controller
     {
         //
 
+        $produit = Produit::findOrFail($id);
+        $categories = ProduitCategorie::all();
+
         $validated = $request->validate([
-            "nom" => "required|min:5|max:255",
+            // this rule makes it possible to change the name of an item as long as the it remains unique
+            // this rule also makes it possible to change anything other data while keeping the same unique name for the item
+            "nom" => ["required", "min:5", "max:255", Rule::unique("produits")->ignore($produit->id)],
+
             "prix" => "required",
             "quantite_disponible" => "required",
             "quantite_restockage" => "required",
             // "categorie" => "required"
         ]);
-
-        $produit = Produit::findOrFail($id);
-        $categories = ProduitCategorie::all();
 
         // updating produit table
         $produit->nom = request("nom");
