@@ -63,15 +63,21 @@ class ProduitController extends Controller
         $produit = new Produit();
         $categories = ProduitCategorie::all();
 
+
+        // 1. the basic way 
         $produit->nom = request("nom");
         $produit->prix = request("prix");
         $produit->quantite_disponible = request("quantite_disponible");
         $produit->quantite_restockage = request("quantite_restockage");
-        // $produit->categorie = request("categorie");
-
         $produit->save();
 
-        // icigo
+        // 2. a cleaner way, a line needs to be added to the Produit.php model; icigo
+        // Produit::create([
+        //     "nom" => request("nom"),
+        //     "prix" => request("prix"),
+        //     "quantite_disponible" => request("quantite_disponible"),
+        //     "quantite_restockage" => request("quantite_restockage")
+        // ]);
 
         // --processing categories-- //
 
