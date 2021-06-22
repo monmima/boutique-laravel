@@ -365,7 +365,7 @@ As a rule of thumb, you should have one controller per table in your database.
 
 ### 500 - Server Error
 
-Your project is probably missing the .env file.
+- Your project is probably missing the .env file.
 
 ## Creating A Many-To-Many Relationship (Pivot Table)
 
