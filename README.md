@@ -188,32 +188,28 @@ Thanks to [Coder's Tape
 
 1. Go to the .env file
 2. Replace **DB_CONNECTION=mysql** with **DB_CONNECTION=sqlite**
-3. Erase all the other database-related lines such as DB_HOST=127.0.0.1, DB_PASSWORD=, etc.
+3. Erase all the other database-related lines (all lines starting with the prefix "DB_") such as DB_HOST=127.0.0.1, DB_PASSWORD=, etc.
 4. Create a database through the Terminal or manually
 
         touch database/database.sqlite
 
-5. Migrate your data and create new tables
-
-        php artisan migrate
-
-6. Update Composer
+5. Update Composer
 
         composer update
 
-7. Install possibly missing dependencies
+6. Install possibly missing dependencies
 
         composer require doctrine/dbal
 
-8. Go to the .env file and make sure your environment variables look like this:
+7. Go to the .env file and make sure your environment variables look like this:
 
         DB_CONNECTION=sqlite
 
-9. Go to the root folder, open a Terminal window and type:
+8. Go to the root folder, open a Terminal window and type:
 
         php artisan migrate
 
-10. If everything went fine, your database should nonw have a few tables that were automatically created such as failed_jobs, etc.
+9. If everything went fine, your database should nonw have a few tables that were automatically created such as failed_jobs, etc.
 
 ___
 
@@ -360,12 +356,16 @@ As a rule of thumb, you should have one controller per table in your database.
 
 ## Solving Different Bugs
 
-Error
-Class 'App\Http\Controllers\Karaoke' not found
+### Error Class 'App\Http\Controllers\Karaoke' not found
 
-Add this at the beginning of your controller file:
+- Add this at the beginning of your controller file:
 
         use App\Models\Karaoke;
+
+
+### 500 - Server Error
+
+Your project is probably missing the .env file.
 
 ## Creating A Many-To-Many Relationship (Pivot Table)
 
