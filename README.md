@@ -365,7 +365,17 @@ As a rule of thumb, you should have one controller per table in your database.
 
 ### 500 - Server Error
 
-- Your project is probably missing the .env file.
+- Your project is probably missing the .env file. For security reasons, the .env file is not typically uploaded to Git repositories.
+
+### Target class [PizzaController] does not exist.
+
+- Make sure you are using the right namespace. The namespace is not working the same way in older versions of Laravel. Go to your web.php file and change this:
+
+        Route::get('/pizzas', 'PizzaController@index');
+
+To this:
+
+        Route::get('/pizzas', 'App\Http\Controllers\PizzaController@index');
 
 ## Creating A Many-To-Many Relationship (Pivot Table)
 
