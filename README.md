@@ -373,9 +373,20 @@ As a rule of thumb, you should have one controller per table in your database.
 
         Route::get('/pizzas', 'PizzaController@index');
 
-To this:
+- To this:
 
         Route::get('/pizzas', 'App\Http\Controllers\PizzaController@index');
+
+### Getting a token in the address bar instead of storing/updating the database
+
+- Something is likely to be wrong with your form. This could be caused by:
+
+    - The "method" attribute that your forgot for the &lt;form&gt; tag
+    - Nesting a &lt;form&gt; tag inside of another form tag, etc.
+
+### The PUT method is not supported for this route. Supported methods: GET, HEAD.
+
+- Something is wrong with your route. The form route and the web.php route doesn't seem to be the same.
 
 ## Creating A Many-To-Many Relationship (Pivot Table)
 
