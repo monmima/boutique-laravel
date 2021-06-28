@@ -7,7 +7,7 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
-    
+
 </head>
 <body>
     <header>
@@ -25,14 +25,14 @@
             @foreach($produits as $item)
 
                 <ul>
-                    <a href="{{ $item->id }}/edit">{{ $item->id }} <br> {{ $item->nom }} <br> {{ $item->prix }} <br> 
-                    
-                    Catégorie(s): 
+                    <a href="{{route('produits.edit', $item->id)}}">g{{ $item->id }} <br> {{ $item->nom }} <br> {{ $item->prix }} <br>
+
+                    Catégorie(s):
                     @foreach($item->categories as $categorie)
                         - {{ $categorie["name"] }}
                     @endforeach</a>
-                    
-                    <form action="/{{ $item->id }}/delete" method="post">
+
+                    <form action="{{route('produits.destroy', $item->id)}}" method="post">
                         <input class="btn btn-default" type="submit" value="Delete {{ $item->nom }}" />
                         @csrf
                         @method('delete')
@@ -73,10 +73,14 @@
                 <p class="error"><small>@error("quantite_restockage"){{$message}}@enderror</small></p>
             @enderror
 
-            @foreach($categories as $categorie)
-                <input type="checkbox" id="{{ $categorie->id }}" name="{{ $categorie->id }}" value="{{ $categorie->name }}">
-                <label for="{{ $categorie->id }}">{{ $categorie->name }}</label><br> 
-            @endforeach
+            @error("categories[]")
+            <p class="error"><small>@error("categories[]"){{$message}}@enderror</small></p>
+            @enderror
+            <select multiple name="categories[]">
+                @foreach($categories as $categorie)
+                    <option value="{{ $categorie->id }}" {{in_array($categorie->id, old('categories', [])) ? 'selected' : ''}}> {{ $categorie->name }} </option>
+                @endforeach
+            </select>
 
             <!--BOUTONS-->
             <div class="espaces-boutons">

@@ -12,7 +12,7 @@
 <body>
     <form method="POST" action="/{{ $produit->id }}" name="edit" id="edit">
         <!-- cross-site request forgery -->
-        @csrf 
+        @csrf
         <!-- because modern browsers/forms can only take two different methods -->
         @method('PUT')
 
@@ -52,18 +52,15 @@
 
         <hr>
 
-        <!-- compare and print the data -->
-        @foreach($categories as $categorie)
+        @error("categories[]")
+        <p class="error"><small>@error("categories[]"){{$message}}@enderror</small></p>
+        @enderror
+        <select multiple name="categories[]">
+            @foreach($categories as $categorie)
+                <option value="{{ $categorie->id }}" {{in_array($categorie->id, old('categories', $produit->categories->pluck('id')->toArray())) ? 'selected' : ''}}> {{ $categorie->name }} </option>
+            @endforeach
+        </select>
 
-            @if (in_array($categorie->name, $tickedArray))
-                <input type="checkbox" id="{{ $categorie->id }}" name="{{ $categorie->id }}" value="{{ $categorie->name }}" checked>
-                <label for="{{ $categorie->id }}">{{ $categorie->name }}</label><br>
-            @else
-                <input type="checkbox" id="{{ $categorie->id }}" name="{{ $categorie->id }}" value="{{ $categorie->name }}">
-                <label for="{{ $categorie->id }}">{{ $categorie->name }}</label><br>
-            @endif
-
-        @endforeach
 
         <hr>
 

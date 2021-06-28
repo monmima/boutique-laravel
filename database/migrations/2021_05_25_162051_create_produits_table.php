@@ -20,7 +20,6 @@ class CreateProduitsTable extends Migration
             $table->float('prix');
             $table->integer('quantite_disponible');
             $table->integer('quantite_restockage');
-            $table->text('categorie');
         });
     }
 
