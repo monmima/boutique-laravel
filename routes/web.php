@@ -25,10 +25,12 @@ Route::get('/categories', "App\Http\Controllers\ProduitCategorieController@index
 
 Route::get('/', "App\Http\Controllers\ProduitController@index");
 Route::post('/', "App\Http\Controllers\ProduitController@store");
-Route::get('/{id}/edit', "App\Http\Controllers\ProduitController@edit");
+Route::get('/{produit}/edit', "App\Http\Controllers\ProduitController@edit");
 Route::get('/{id}', "App\Http\Controllers\ProduitController@show");
-Route::put('/{id}', "App\Http\Controllers\ProduitController@update");
-Route::delete('/{id}/delete', "App\Http\Controllers\ProduitController@destroy");
+Route::put('/{produit}', "App\Http\Controllers\ProduitController@update");
+Route::delete('/{produit}/delete', "App\Http\Controllers\ProduitController@destroy");
+
+Route::resource('produits',\App\Http\Controllers\ProduitController::class);
 
 // routes that were there at the beginning
 

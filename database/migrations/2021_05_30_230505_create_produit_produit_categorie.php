@@ -14,9 +14,8 @@ class CreateProduitProduitCategorie extends Migration
     public function up()
     {
         Schema::create('produit_produit_categorie', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('produit_id')->unsigned();
-            $table->integer('produit_categorie_id')->unsigned();
+            $table->foreignId('produit_id')->constrained();
+            $table->foreignId('produit_categorie_id')->constrained();
         });
     }
 
