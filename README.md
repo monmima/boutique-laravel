@@ -388,6 +388,10 @@ As a rule of thumb, you should have one controller per table in your database.
 
 - Something is wrong with your route. The form route and the web.php route doesn't seem to be the same.
 
+### SQLSTATE[23000]: Integrity constraint violation: 19 NOT NULL constraint failed: songs.name (SQL: update "songs" set "name" = ?, "artist" = ?, "lyrics" = ?, "link" = ?, "updated_at" = 2021-06-28 19:59:50 where "id" = 1)
+
+- Something is wrong with the "name" and "id" attributes of your input fields. Are you sure they exist and they are named properly?
+
 ## Creating A Many-To-Many Relationship (Pivot Table)
 
 Thanks to [Code with Daryl](https://www.youtube.com/watch?v=2oFNu_RhTt4) for providing his tutorial on YouTube. Also, thanks to [Qirolab](https://www.youtube.com/watch?v=JQ01o10Mva4).
