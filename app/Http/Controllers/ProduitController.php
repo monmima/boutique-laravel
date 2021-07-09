@@ -25,7 +25,13 @@ class ProduitController extends Controller
             "produits" => $produits,
             "categories" => $categories
         ]);
-        
+
+        // JSON
+        // return [
+        //     "produits" => $produits,
+        //     "categories" => $categories
+        // ];
+
     }
 
     // show the edit form
@@ -50,7 +56,7 @@ class ProduitController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $validated = $request->validate([
             "nom" => "required|min:5|max:255|unique:produits",
             "prix" => "required",
@@ -64,8 +70,7 @@ class ProduitController extends Controller
         $produit = new Produit();
         $categories = ProduitCategorie::all();
 
-
-        // 1. the basic way 
+        // 1. the basic way
         $produit->nom = request("nom");
         $produit->prix = request("prix");
         $produit->quantite_disponible = request("quantite_disponible");
