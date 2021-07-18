@@ -18,12 +18,9 @@ class ProduitController extends Controller
     {
         // getting data from the pivot table is done from the Produit.php model
 
-        $produits = Produit::all();
-        $categories = ProduitCategorie::all();
-
         return view("index", [
-            "produits" => $produits,
-            "categories" => $categories
+            "produits" => Produit::all(),
+            "categories" => ProduitCategorie::all()
         ]);
 
         // JSON
