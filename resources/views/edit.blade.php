@@ -12,7 +12,7 @@
 <body>
     <form method="POST" action="/{{ $produit->id }}" name="edit" id="edit">
         <!-- cross-site request forgery -->
-        @csrf 
+        @csrf
         <!-- because modern browsers/forms can only take two different methods -->
         @method('PUT')
 
